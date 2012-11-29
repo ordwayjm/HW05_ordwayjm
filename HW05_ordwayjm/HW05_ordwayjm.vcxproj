@@ -10,6 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Graph.h" />
+    <ClInclude Include="..\include\GraphAlgs.h" />
+    <ClInclude Include="..\include\ListGraph.h" />
+    <ClInclude Include="..\include\MatrixGraph.h" />
+    <ClInclude Include="..\include\StarbucksMap.h" />
+    <ClInclude Include="..\include\Tester.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Controller.cpp" />
+    <ClCompile Include="..\src\StarbucksMap.cpp" />
+    <ClCompile Include="..\src\Tester.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E3EDAC7F-1D43-49AD-94D7-272D7DF80E4B}</ProjectGuid>
     <RootNamespace>HW05_ordwayjm</RootNamespace>
@@ -41,6 +54,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -59,8 +73,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
