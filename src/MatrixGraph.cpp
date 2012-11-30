@@ -44,7 +44,7 @@ std::list<NWPair> MatrixGraph::getAdj(NodeID u) const
 	NWPair vertex;
 	for(int i = 0; i < M[u].size(); i++)
 	{ 
-		if(M[u][i] == 1)
+		if(M[u][i] != 0)
 		{
 			vertex.first = i; // get NodeID
 			vertex.second = M[u][i]; // get EdgeWeight
