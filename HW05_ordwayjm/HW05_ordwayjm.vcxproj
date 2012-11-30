@@ -25,6 +25,9 @@
     <ClCompile Include="..\src\StarbucksMap.cpp" />
     <ClCompile Include="..\src\Tester.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\Starbucks.csv" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E3EDAC7F-1D43-49AD-94D7-272D7DF80E4B}</ProjectGuid>
     <RootNamespace>HW05_ordwayjm</RootNamespace>

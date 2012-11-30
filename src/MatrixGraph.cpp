@@ -16,16 +16,9 @@ MatrixGraph::~MatrixGraph() {}
 
 /*
  * Add a weighted, undirected edge between nodes u and v.
- * 
- * Preconditions: 
- *     u and v are legal labels (i.e. 0 <= u < G.size(), 0 <= v < G.size())
- *     u != v
- *     There is no edge between u and v.
- *     weight > 0
  */
 void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight) 
 {
-	// TODO: add preconditions
 	M[u][v] = weight;
 	M[v][u] = weight;
 	num_edges++;
@@ -35,24 +28,18 @@ void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight)
 
 /*
  * Get the weight between nodes u and v; return 0 if there is no edge.
- *
- * Preconditions: 
- *     u and v are legal labels (i.e. 0 <= u < G.size(), 0 <= v < G.size())
  */
 EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const
 {
-	// TODO: add preconditions
 	return M[u][v];
 }
 
 /*
  * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to edge w.
- *
- * Preconditions: u is a legal label.
  */
 std::list<NWPair> MatrixGraph::getAdj(NodeID u) const 
 {
-	// TODO: add preconditions
+
 	EList* adj = new EList();
 	NWPair vertex;
 	for(int i = 0; i < M[u].size(); i++)
@@ -69,18 +56,10 @@ std::list<NWPair> MatrixGraph::getAdj(NodeID u) const
 
 /*
  * Return the degree (i.e. the number of neighorbs) of node u.
- *
- * Preconditions: u is a legal label;
  */
 unsigned MatrixGraph::degree(NodeID u) const
 {
-	// TODO: add preconditions
-	int degree = 0;
-	for(int i = 0; i < M[u].size(); i++)
-	{
-		degree += M[u][i];
-	}
-	return degree;
+	return getAdj(u).size();
 }
 
 /*
