@@ -35,7 +35,7 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const
 }
 
 /*
- * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to edge w.
+ * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to edge u.
  */
 std::list<NWPair> MatrixGraph::getAdj(NodeID u) const 
 {
