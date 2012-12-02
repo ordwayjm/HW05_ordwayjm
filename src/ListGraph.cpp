@@ -17,10 +17,10 @@ void ListGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight)
 {
 	// add edge for u, v
 	NWPair edge1 = NWPair(v, weight);
-	edgeList[u].push_front(edge1);
+	edgeList[u].push_back(edge1);
 	// add edge for v, u
 	NWPair edge2 = NWPair(u, weight);
-	edgeList[v].push_front(edge2);
+	edgeList[v].push_back(edge2);
 	
 	num_edges++;
 }
