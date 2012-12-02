@@ -10,7 +10,11 @@
  */
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 {
+	int numNodes = G->size();
+	double tourLength = 0.0;
+	std::vector<NodeID> bestTour = std::vector<NodeID>(numNodes);
 
+	return std::pair<std::vector<NodeID>,EdgeWeight>(bestTour, tourLength);
 }
 
 
