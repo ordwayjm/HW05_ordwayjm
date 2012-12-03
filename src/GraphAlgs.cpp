@@ -72,7 +72,7 @@ void tour(int* arr, int n, int startingPlace)
 }
 
 /*
- * Adds up the length of the tour in array arr
+ * Adds up the length of the tour in array arr, terminates early if calculated length is larger than best so far
  */
 EdgeWeight getTourLength(int* arr, int n)
 {
@@ -80,6 +80,8 @@ EdgeWeight getTourLength(int* arr, int n)
 	for(int i = 0; i < n - 1; i++)
 	{
 		length += graph->weight(arr[i], arr[i+1]);
+		if(length > bestTourLength)
+			return length;
 	}
 	length += graph->weight(arr[n - 1], arr[0]);
 	return length;
