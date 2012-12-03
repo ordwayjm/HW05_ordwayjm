@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 /*
  * Solves the Traveling Salesperson Problem: finding the shortest cycle through a graph that 
  * vists every node exactly once (with exception of the first node, which is repeated as the 
@@ -22,6 +21,6 @@
 
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G);
 
-void tour(int* arr, int n, int startingPlace, EdgeWeight bestTourLength);
-EdgeWeight getTourLength(int* arr, EdgeWeight bestTourLength);
+void tour(int* arr, int n, int startingPlace);
+EdgeWeight getTourLength(int* arr);
 void swap(int* arr, int a, int b);

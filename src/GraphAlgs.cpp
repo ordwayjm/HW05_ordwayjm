@@ -1,5 +1,10 @@
 #include "GraphAlgs.h"
 
+EdgeWeight bestTourLength;
+Graph* graph;
+int numNodes;
+int* bestTour;
+
 /*
  * Solves the Traveling Salesperson Problem: finding the shortest cycle through a graph that 
  * vists every node exactly once (with exception of the first node, which is repeated as the 
@@ -10,40 +15,67 @@
  */
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 {
-	int numNodes = G->size();
-	EdgeWeight bestTourLength = 0.0;
-	std::vector<NodeID> bestTour = std::vector<NodeID>(numNodes);
+	numNodes = G->size();
+	bestTourLength = 0.0;
+	graph = G;
+	bestTour = new int[numNodes];
 
+	int* arr = new int[numNodes];
 
-	return std::pair<std::vector<NodeID>,EdgeWeight>(bestTour, bestTourLength);
+	// initialize best tour, node array with indexes
+	for(int i = 0; i < numNodes; i++)
+	{
+		arr[i] = i;
+		bestTour[i] = i;
+	}
+	bestTourLength = getTourLength(bestTour);
+	
+	tour(arr, numNodes, 0);
+	
+	// switch over to vector to match output
+	std::vector<NodeID> bestTourVector;
+	for(int i = 0; i < numNodes; i++)	
+	{
+		bestTourVector.push_back(bestTour[i]);
+	}
+
+	return std::pair<std::vector<NodeID>,EdgeWeight>(bestTourVector, bestTourLength);
 }
 
 /*
  * Brute Force, check every possible node combination.
  * Based on tour code shown in class.
  */
-void tour(int* arr, int n, int startingPlace, EdgeWeight bestTourLength)
+void tour(int* arr, int n, int startingPlace)
 {
 	EdgeWeight currTourLength;
 	if(n - startingPlace == 1) 
 	{
-		currTourLength = getTourLength(arr, bestTourLength);
+		currTourLength = getTourLength(arr);
 		if(currTourLength < bestTourLength) 
 		{
 			bestTourLength = currTourLength;
+			for(int i = 0; i < n; i++)
+			{
+				bestTour[i] = arr[i];
+			}
 		}
 	}
 	else 
 	{
-		currTourLength = getTourLength(arr, bestTourLength);
+		currTourLength = getTourLength(arr);
 		if(currTourLength < bestTourLength) 
 		{
 			bestTourLength = currTourLength;
+			for(int i = 0; i < n; i++)
+			{
+				bestTour[i] = arr[i];
+			}
 		}
 		for(int i = startingPlace; i < n; i++) 
 		{
 			swap(arr, arr[startingPlace], arr[i]);
-			tour(arr, n, startingPlace + 1, bestTourLength);
+			tour(arr, n, startingPlace + 1);
 			swap(arr, arr[startingPlace], arr[i]);
 		}
 	}
@@ -52,9 +84,15 @@ void tour(int* arr, int n, int startingPlace, EdgeWeight bestTourLength)
 /*
  * Adds up the length of the tour in array arr, compares with best so far to terminate early.
  */
-EdgeWeight getTourLength(int* arr, EdgeWeight bestTourLength)
+EdgeWeight getTourLength(int* arr)
 {
-	return 0.0;
+	EdgeWeight length = 0;
+	for(int i = 0; i < numNodes - 1; i++)
+	{
+		length += graph->weight(arr[i], arr[i+1]);
+	}
+	length += graph->weight(arr[numNodes - 1], arr[0]);
+	return length;
 }
 
 /*
