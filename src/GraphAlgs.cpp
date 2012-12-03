@@ -49,11 +49,17 @@ void tour(int* arr, int n, int startingPlace, EdgeWeight bestTourLength)
 	}
 }
 
+/*
+ * Adds up the length of the tour in array arr, compares with best so far to terminate early.
+ */
 EdgeWeight getTourLength(int* arr, EdgeWeight bestTourLength)
 {
-
+	return 0.0;
 }
 
+/*
+ * Swaps arr[a] with arr[b]
+ */
 void swap(int* arr, int a, int b)
 {
 	int temp = arr[a];
