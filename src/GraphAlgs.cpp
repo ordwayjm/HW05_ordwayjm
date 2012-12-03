@@ -82,8 +82,6 @@ EdgeWeight getTourLength(int* arr, int n)
 	for(int i = 0; i < n - 1; i++)
 	{
 		length += graph->weight(arr[i], arr[i+1]);
-		if(length > bestTourLength)
-			return length;
 	}
 	// get last node weight
 	length += graph->weight(arr[n - 1], arr[0]);
@@ -99,7 +97,3 @@ void swap(int* arr, int a, int b)
 	arr[a] = arr[b];
 	arr[b] = temp;
 }
-
-
-
-
