@@ -17,16 +17,18 @@ std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 	int numNodes = G->size();
 	bestTourLength = 0.0;
 	graph = G;
+	
+	// int* to hold indices of G
 	bestTour = new int[numNodes];
-
 	int* arr = new int[numNodes];
 
-	// initialize best tour, node array with indexes
+	// initialize best tour/node arrays with indices
 	for(int i = 0; i < numNodes; i++)
 	{
 		arr[i] = i;
 		bestTour[i] = i;
 	}
+	// initialize base tour case
 	bestTourLength = getTourLength(bestTour, numNodes);
 	
 	tour(arr, numNodes, 0);
@@ -83,6 +85,7 @@ EdgeWeight getTourLength(int* arr, int n)
 		if(length > bestTourLength)
 			return length;
 	}
+	// get last node weight
 	length += graph->weight(arr[n - 1], arr[0]);
 	return length;
 }
