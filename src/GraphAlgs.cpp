@@ -31,7 +31,7 @@ std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 	// initialize base tour case
 	bestTourLength = getTourLength(bestTour, numNodes);
 	
-	tour(arr, numNodes, 0);
+	tour(arr, numNodes, 1);
 	
 	// switch over to vector to match output
 	std::vector<NodeID> bestTourVector;
