@@ -2,7 +2,6 @@
 
 EdgeWeight bestTourLength;
 Graph* graph;
-int numNodes;
 int* bestTour;
 
 /*
@@ -15,7 +14,7 @@ int* bestTour;
  */
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 {
-	numNodes = G->size();
+	int numNodes = G->size();
 	bestTourLength = 0.0;
 	graph = G;
 	bestTour = new int[numNodes];
@@ -28,7 +27,7 @@ std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 		arr[i] = i;
 		bestTour[i] = i;
 	}
-	bestTourLength = getTourLength(bestTour);
+	bestTourLength = getTourLength(bestTour, numNodes);
 	
 	tour(arr, numNodes, 0);
 	
@@ -51,7 +50,7 @@ void tour(int* arr, int n, int startingPlace)
 	EdgeWeight currTourLength;
 	if(n - startingPlace == 1) 
 	{
-		currTourLength = getTourLength(arr);
+		currTourLength = getTourLength(arr, n);
 		if(currTourLength < bestTourLength) 
 		{
 			bestTourLength = currTourLength;
@@ -63,15 +62,6 @@ void tour(int* arr, int n, int startingPlace)
 	}
 	else 
 	{
-		currTourLength = getTourLength(arr);
-		if(currTourLength < bestTourLength) 
-		{
-			bestTourLength = currTourLength;
-			for(int i = 0; i < n; i++)
-			{
-				bestTour[i] = arr[i];
-			}
-		}
 		for(int i = startingPlace; i < n; i++) 
 		{
 			swap(arr, arr[startingPlace], arr[i]);
@@ -82,16 +72,16 @@ void tour(int* arr, int n, int startingPlace)
 }
 
 /*
- * Adds up the length of the tour in array arr, compares with best so far to terminate early.
+ * Adds up the length of the tour in array arr
  */
-EdgeWeight getTourLength(int* arr)
+EdgeWeight getTourLength(int* arr, int n)
 {
 	EdgeWeight length = 0;
-	for(int i = 0; i < numNodes - 1; i++)
+	for(int i = 0; i < n - 1; i++)
 	{
 		length += graph->weight(arr[i], arr[i+1]);
 	}
-	length += graph->weight(arr[numNodes - 1], arr[0]);
+	length += graph->weight(arr[n - 1], arr[0]);
 	return length;
 }
 
