@@ -11,10 +11,56 @@
 std::pair<std::vector<NodeID>, EdgeWeight> TSP(Graph* G)
 {
 	int numNodes = G->size();
-	double tourLength = 0.0;
+	EdgeWeight bestTourLength = 0.0;
 	std::vector<NodeID> bestTour = std::vector<NodeID>(numNodes);
 
-	return std::pair<std::vector<NodeID>,EdgeWeight>(bestTour, tourLength);
+
+	return std::pair<std::vector<NodeID>,EdgeWeight>(bestTour, bestTourLength);
 }
+
+/*
+ * Brute Force, check every possible node combination.
+ * Based on tour code shown in class.
+ */
+void tour(int* arr, int n, int startingPlace, EdgeWeight bestTourLength)
+{
+	EdgeWeight currTourLength;
+	if(n - startingPlace == 1) 
+	{
+		currTourLength = getTourLength(arr, bestTourLength);
+		if(currTourLength < bestTourLength) 
+		{
+			bestTourLength = currTourLength;
+		}
+	}
+	else 
+	{
+		currTourLength = getTourLength(arr, bestTourLength);
+		if(currTourLength < bestTourLength) 
+		{
+			bestTourLength = currTourLength;
+		}
+		for(int i = startingPlace; i < n; i++) 
+		{
+			swap(arr, arr[startingPlace], arr[i]);
+			tour(arr, n, startingPlace + 1, bestTourLength);
+			swap(arr, arr[startingPlace], arr[i]);
+		}
+	}
+}
+
+EdgeWeight getTourLength(int* arr, EdgeWeight bestTourLength)
+{
+
+}
+
+void swap(int* arr, int a, int b)
+{
+	int temp = arr[a];
+	arr[a] = arr[b];
+	arr[b] = temp;
+}
+
+
 
 
